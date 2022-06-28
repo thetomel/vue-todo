@@ -10,6 +10,7 @@
     "axios": "^0.27.2",
     "bootstrap-icons-vue": "^1.8.1",
     "mdue": "^0.1.4",
+    "v-switch-case": "^1.0.3",
     "vue": "^3.2.36",
     "vue-material-design-icons": "^5.0.0"
   },

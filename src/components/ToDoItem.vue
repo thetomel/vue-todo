@@ -1,13 +1,20 @@
 <script>
+import axios from 'axios';
 export default {
     name: 'ToDoItem',
-    base_url: 'http://localhost:8080/tasks',
     props: {
     taskName: String,
     taskDesc: String,
     user: String,
     done: Boolean,
     uploadDate: Date,
+    taskid: Number
+  },
+  data(){
+    return {
+    base_url: 'http://localhost:8080/tasks',
+    doneLocal: this.done}
+    
   },
   methods:
   {
@@ -28,9 +35,10 @@ export default {
       }
 ,
 changeDone(){
-        this.done = !this.done
-        // url_patch(this.base_url + '/' + id + '/state')
-        // axios.patch(url_patch);
+        this.doneLocal =!this.doneLocal
+        let url_patch = ( '/' + this.taskid + '/state')
+        console.log('link' + this.doneLocal)
+        axios.patch(this.base_url + url_patch);
       }
 }
   }
@@ -38,7 +46,7 @@ changeDone(){
 </script>
 <template>
     <div class="todoitem">
-        <div :class="done ? 'done' : 'def'">
+        <div :class="doneLocal ? 'done' : 'def'">
         <section @click="changeDone()">
         <b>{{ taskName }}</b>  
         </section>

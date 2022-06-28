@@ -27,7 +27,7 @@ export default {
   <div id="TasksList">
     <ul>
         <li v-for="item in tasks">
-            <ToDoItem :taskName="item.taskName" :taskDesc="item.taskDescription" :user="item.userName" :uploadDate="item.uploadDate" :done="item.done"></ToDoItem>
+            <ToDoItem :taskName="item.taskName" :taskDesc="item.taskDescription" :user="item.userName" :uploadDate="item.uploadDate" :done="item.done" :taskid="item.taskID"></ToDoItem>
         </li> 
     </ul>
   

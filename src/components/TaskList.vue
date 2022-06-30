@@ -2,6 +2,7 @@
 import axios from 'axios';
 import ToDoItem from './ToDoItem.vue';
 import AddTaskVue from './AddTask.vue';
+
 export default {
     name: "TasksList",
     data() {
@@ -9,30 +10,35 @@ export default {
             query: "",
             tasks: {},
             errored: false,
-            base_url: 'http://localhost:8080/tasks'
+            base_url: 'http://localhost:8080/tasks',
         };
     },
     mounted() {
         axios.get(this.base_url).then(response => (this.tasks = response.data)).catch(error => {console.log(error), this.errored=true})
         console.log(this.tasks);
     },
-    // updated() {
-    //     axios.get(this.base_url).then(response => (this.tasks = response.data)).catch(error => {console.log(error), this.errored=true})
-    //     console.log(this.tasks);
-    // },
+    methods:{
+        reloadAxiosData() {
+            axios.get(this.base_url).then(response => (this.tasks = response.data)).catch(error => {console.log(error), this.errored=true})
+            console.log('Reload' + this.tasks);
+            console.log("clicked");
+            // this.$forceUpdate();
+        }
+    },
     components: { ToDoItem, AddTaskVue },
   
 }
 </script>
 
 <template>
-<div v-if="errored">
-<p> </p></div>
-<div v-else>
+<div class="content" v-if="errored">
+    <p>Error - can't get to Data</p>
+</div>
+<div class="content" v-else>
   <div id="TasksListComponent">
-    <add-task-vue></add-task-vue>
+    <add-task-vue @submit="reloadAxiosData()"></add-task-vue>
     <ul class="ListOfTasks">
-        <li v-for="item in tasks" v-bind:key="item.lastUpdate">
+        <li v-for="item in tasks" v-bind:key="item.uploadDate" >
             <ToDoItem :taskName="item.taskName" :taskDesc="item.taskDescription" :user="item.userName" :uploadDate="item.uploadDate" :done="item.done" :taskid="item.taskID"></ToDoItem>
         </li> 
     </ul>

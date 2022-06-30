@@ -34,18 +34,14 @@ export default {
 </script>
 <template>
     <div class="addTaskBar">
-        <input type='text' placeholder="Type here task name..." v-model="taskName" />
-        <textarea v-model="taskDescription" placeholder="About this task..."/>
-        <button @click="addTask()">Add Task</button>
+        <form>
+            <input type='text' placeholder="Type here task name..." v-model="taskName" />
+            <textarea v-model="taskDescription" placeholder="About this task..."/>
+            <button @click="addTask()" type="submit">Add Task</button>
+        </form>
+        
     </div>
 
 </template>
 <style>
-    .addTaskBar {
-        padding: 2%;
-        display: flex;
-    }
-    .addTaskBar *{
-        margin: 2%;
-    }
 </style>

@@ -8,7 +8,7 @@ export default {
     taskDesc: String,
     user: String,
     done: Boolean,
-    uploadDate: Date,
+    uploadDate: String,
     taskid: Number
   },
   data(){

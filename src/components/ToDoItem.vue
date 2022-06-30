@@ -61,6 +61,7 @@ changeDone(){
 </template>
 <style scoped>
 .todoitem {
+    background-color: aliceblue;
     border: black 6px solid;
 }
 .todoitem section b {

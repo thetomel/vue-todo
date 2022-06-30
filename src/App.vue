@@ -1,7 +1,7 @@
 <template>
   <nav>
     <router-link to="/">Start</router-link> |
-    <router-link to="/tasks">Tasks</router-link> |
+    <router-link to="/tasks">Tasks</router-link> 
   </nav>
   <router-view/>
 </template>

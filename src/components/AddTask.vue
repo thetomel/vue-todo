@@ -15,17 +15,18 @@ export default {
     methods:
     {
         addTask(){
-            if(this.taskName == '') {
+            if(this.taskName === '') {
                 alert("cant be null")//change to some notification with collors on site
             }
             else{
-            axios.post('http://localhost:8080/tasks/new',{
+                axios.post('http://localhost:8080/tasks/new',{
                 "taskName": this.taskName,
                 "userName": "curr",
                 "taskDescription": this.taskDescription
+                
             })
-            this.taskName = '';
-            this.taskDescription = '';
+                 this.taskName = '';
+                this.taskDescription = '';
             }
         }
     }
@@ -34,11 +35,13 @@ export default {
 </script>
 <template>
     <div class="addTaskBar">
-        <form>
+        <form> 
+            <!-- onsubmit="return false" -->
             <input type='text' placeholder="Type here task name..." v-model="taskName" />
-            <textarea v-model="taskDescription" placeholder="About this task..."/>
-            <button @click="addTask()" type="submit">Add Task</button>
-        </form>
+            <textarea style="resize: none;" v-model="taskDescription" placeholder="About this task..."/>
+            <button @click="addTask()"  type="button">Add Task</button>
+            <!-- v-on:submit.prevent -->
+        </form >
         
     </div>
 

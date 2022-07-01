@@ -18,14 +18,19 @@ export default {
         console.log(this.tasks);
     },
     methods:{
-        reloadAxiosData() {
-            axios.get(this.base_url).then(response => (this.tasks = response.data)).catch(error => {console.log(error), this.errored=true})
-            console.log('Reload' + this.tasks);
-            console.log("clicked");
-            // this.$forceUpdate();
-        }
-    },
+        reload(){
+                this.$nextTick(()=>{
+                    axios.get(this.base_url).then(response => (this.tasks = response.data)).catch(error => {console.log(error), this.errored=true})
+                    });
+                }       
+        },
+        
+
     components: { ToDoItem, AddTaskVue },
+    computed:
+    {
+
+    }
   
 }
 </script>
@@ -36,9 +41,9 @@ export default {
 </div>
 <div class="content" v-else>
   <div id="TasksListComponent">
-    <add-task-vue @submit="reloadAxiosData()"></add-task-vue>
+    <add-task-vue @mouseleave="reload()"></add-task-vue>
     <ul class="ListOfTasks">
-        <li v-for="item in tasks" v-bind:key="item.uploadDate" >
+        <li v-for="item in tasks" v-bind:key="item.uploadDate">
             <ToDoItem :taskName="item.taskName" :taskDesc="item.taskDescription" :user="item.userName" :uploadDate="item.uploadDate" :done="item.done" :taskid="item.taskID"></ToDoItem>
         </li> 
     </ul>

@@ -21,7 +21,7 @@ nav {
     flex-direction: column-reverse;
 }
 .todoitem{
-    width: 80%;
+    width: auto;
     min-width: 300px;
     padding: 1.5%;
     margin: 3%;
@@ -32,7 +32,7 @@ box-shadow: 8px 8px 45px -14px rgba(9, 13, 58, 1);
 #TasksListComponent{
     display: flex;
     flex-direction: column;
-    width: 90%;
+    width: 90vw
 }
 ul {
     list-style-type: none;

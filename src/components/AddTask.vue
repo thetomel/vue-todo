@@ -14,20 +14,21 @@ export default {
     },
     methods:
     {
-        addTask(){
+        async addTask(){
             if(this.taskName === '') {
                 alert("cant be null")//change to some notification with collors on site
+                return;
             }
-            else{
-                axios.post('http://localhost:8080/tasks/new',{
-                "taskName": this.taskName,
-                "userName": "curr",
-                "taskDescription": this.taskDescription
-                
-            })
-                 this.taskName = '';
-                this.taskDescription = '';
-            }
+
+            await axios.post('http://localhost:8080/tasks/new',{
+              "taskName": this.taskName,
+              "userName": "curr",
+              "taskDescription": this.taskDescription
+            });
+
+            this.$emit('task-added');
+            this.taskName = '';
+            this.taskDescription = '';
         }
     }
 }

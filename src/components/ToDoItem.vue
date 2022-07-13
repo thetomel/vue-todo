@@ -13,37 +13,38 @@ export default {
   },
   data(){
     return {
-    base_url: 'http://localhost:8080/tasks',
-    doneLocal: this.done}
+      base_url: 'http://localhost:8080/tasks',
+      doneLocal: this.done,
+    };
     
   },
   methods:
   {
       dateBuilder() {
-      let d = new Date(this.uploadDate);
-      console.log(d)
-      let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-      let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+        // TODO: look into library https://day.js.org/ . It's industry standard for date manipulation
+        // TODO: You don't need to use let in any of the variables below. Replace them with const
+        let d = new Date(this.uploadDate);
+        console.log(d)
+        let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+        let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
 
-      let day = days[d.getDay()]
-      let date = d.getDate();
-      let month = months[d.getMonth()];
-      let year = d.getFullYear();
-      let hour = d.getHours();
-      let minutes = d.getMinutes();
+        let day = days[d.getDay()]
+        let date = d.getDate();
+        let month = months[d.getMonth()];
+        let year = d.getFullYear();
+        let hour = d.getHours();
+        let minutes = d.getMinutes();
 
-      return `${hour}:${minutes} - ${day} ${date} ${month} ${year}`
-      }
-,
-changeDone(){
+        return `${hour}:${minutes} - ${day} ${date} ${month} ${year}`
+      },
+      changeDone(){
         this.doneLocal =!this.doneLocal
         let url_patch = ( '/' + this.taskid + '/state')
         console.log('link' + this.doneLocal)
         axios.patch(this.base_url + url_patch);
       }
-}
   }
-
+};
 </script>
 <template>
     <div class="todoitem">
